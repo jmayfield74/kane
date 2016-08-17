@@ -1,5 +1,5 @@
 defmodule Kane.Subscription do
-  defstruct name: nil, topic: nil, ack_deadline: 10
+  defstruct name: nil, topic: nil, ack_deadline: 10, max_messages: 1
   alias Kane.Topic
   alias Kane.Message
 
@@ -43,10 +43,10 @@ defmodule Kane.Subscription do
     %{ "topic" => Topic.full_name(topic), "ackDeadlineSeconds" => ack }
   end
 
-  def data(%__MODULE__{}, :pull) do
+  def data(%__MODULE__{max_messages: max_messages}, :pull) do
     %{
       "returnImmediately": true,
-      "maxMessages": 1,
+      "maxMessages": max_messages,
     }
   end
 
