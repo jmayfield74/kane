@@ -46,7 +46,7 @@ defmodule Kane.Subscription do
   def data(%__MODULE__{}, :pull) do
     %{
       "returnImmediately": true,
-      "maxMessages": 100,
+      "maxMessages": 1,
     }
   end
 
